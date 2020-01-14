@@ -1,5 +1,6 @@
 #pragma once
 #include "RemoveRedEffect.hpp"
+#include "BlurringEffect.hpp"
 
 enum class ImageEffectType
 {
