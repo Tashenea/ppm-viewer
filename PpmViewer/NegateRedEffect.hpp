@@ -12,10 +12,10 @@ public:
 		{
 			for (int j = 0; j < doc.getWidth(); j++)
 			{
-				Pixel& p = doc[i][j];
-				p.red = 255 - p.red;
+				Pixel& position = doc[i][j];
+				position.red = 255 - position.red;
 
-				doc[i][j] = p;
+				doc[i][j] = position;
 			}
 		}
 	}

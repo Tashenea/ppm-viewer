@@ -81,7 +81,7 @@ public:
 					return new NegateGreenEffect{};
 					break;
 				case ImageEffectType::NegateBlue:
-					return new NegateBlueEffect{};
+					return new NegateBlue{};
 					break;
 				case ImageEffectType::Grayscale:
 					return new GrayscaleEffect{};
@@ -102,7 +102,7 @@ public:
 					return new BlurEffect{};
 					break;
 				case ImageEffectType::Pixelate:
-					return new PixelateImageEffect{};
+					return new PixelateEffect{};
 					break;
 				case ImageEffectType::Rotate90:
 					return new Rotate90Effect{};
@@ -112,4 +112,3 @@ public:
 				}
 			}
 		};
-	

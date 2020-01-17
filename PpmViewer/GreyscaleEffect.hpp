@@ -10,13 +10,13 @@ public:
 		{
 			for (int j = 0; j < doc.getWidth(); j++)
 			{
-				Pixel& p = doc[i][j];
-				int average = (p.red + p.green + p.blue) / 3;
-				p.red = average;
-				p.green = average;
-				p.blue = average;
+				Pixel& position = doc[i][j];
+				int average = (position.red + position.green + position.blue) / 3;
+				position.red = average;
+				position.green = average;
+				position.blue = average;
 
-				doc[i][j] = p;
+				doc[i][j] = position;
 			}
 		}
 	}

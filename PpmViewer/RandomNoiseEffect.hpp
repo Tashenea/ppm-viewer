@@ -11,51 +11,51 @@ public:
 		{
 			for (int j = 0; j < doc.getWidth(); j++)
 			{
-				Pixel& p = doc[i][j];
+				Pixel& position = doc[i][j];
 				int random = (rand() % 20);
-				int random_number = random - 10;
-				if ((p.red + random_number) >= 255)
+				int random_val = random - 10;
+				if ((position.red + random_val) >= 255)
 				{
-					p.red = 255;
+					position.red = 255;
 				}
-				else if ((p.red - random_number) <= 0)
+				else if ((position.red - random_val) <= 0)
 				{
-					p.red = 0;
+					position.red = 0;
 				}
 				else
 				{
-					p.red = p.red + random_number;
+					position.red = position.red + random_val;
 				}
 				random = (rand() % 20);
-				random_number = random - 10;
-				if ((p.green + random_number) >= 255)
+				random_val = random - 10;
+				if ((position.green + random_val) >= 255)
 				{
-					p.green = 255;
+					position.green = 255;
 				}
-				else if ((p.green - random_number) <= 0)
+				else if ((position.green - random_val) <= 0)
 				{
-					p.green = 0;
+					position.green = 0;
 				}
 				else
 				{
-					p.green = p.green + random_number;
+					position.green = position.green + random_val;
 				}
 				random = (rand() % 20);
-				random_number = random - 10;
-				if ((p.blue + random_number) >= 255)
+				random_val = random - 10;
+				if ((position.blue + random_val) >= 255)
 				{
-					p.blue = 255;
+					position.blue = 255;
 				}
-				else if ((p.blue - random_number) <= 0)
+				else if ((position.blue - random_val) <= 0)
 				{
-					p.blue = 0;
+					position.blue = 0;
 				}
 				else
 				{
-					p.blue = p.blue + random_number;
+					position.blue = position.blue + random_val;
 				}
 				//not necessary as we're using references but it makes our intent more clear
-				doc[i][j] = p;
+				doc[i][j] = position;
 			}
 		}
 	}

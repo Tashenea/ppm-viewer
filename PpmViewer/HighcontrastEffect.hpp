@@ -11,33 +11,32 @@ public:
 		{
 			for (int j = 0; j < doc.getWidth(); j++)
 			{
-				Pixel& p = doc[i][j];
-				if (p.red >= 128)
+				Pixel& position = doc[i][j];
+				if (position.red >= 128)
 				{
-					p.red = 255;
+					position.red = 255;
 				}
 				else
 				{
-					p.red = 0;
+					position.red = 0;
 				}
-				if (p.green >= 128)
+				if (position.green >= 128)
 				{
-					p.green = 255;
+					position.green = 255;
 				}
 				else
 				{
-					p.green = 0;
+					position.green = 0;
 				}
-				if (p.blue >= 128)
+				if (position.blue >= 128)
 				{
-					p.blue = 255;
+					position.blue = 255;
 				}
 				else
 				{
-					p.blue = 0;
+					position.blue = 0;
 				}
-				//not necessary as we're using references but it makes our intent more clear
-				doc[i][j] = p;
+				doc[i][j] = position;
 			}
 		}
 	}

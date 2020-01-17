@@ -6,34 +6,34 @@ class VerticalFlipEffect : public ImageEffect
 public:
 	virtual void applyEffect(PpmDocument& doc)
 	{
-		int count = 0;
-		int new_x = 0;
-		int new_y = 0;
-		vector<vector<Pixel>> copy{};
-		copy.resize(doc.getHeight());
+		int counter = 0;
+		int x = 0;
+		int y = 0;
+		vector<vector<Pixel>> vacant{};
+		vacant.resize(doc.getHeight());
 
 		for (int i = 0; i < doc.getHeight(); i++)
 		{
-			copy[i].resize(doc.getWidth());
+			vacant[i].resize(doc.getWidth());
 		}
 
 		for (int i = 0; i < doc.getHeight(); i++)
 		{
 			for (int j = 0; j < doc.getWidth(); j++)
 			{
-				copy[i][j] = doc[i][j];
+				vacant[i][j] = doc[i][j];
 			}
 		}
 		for (int i = doc.getHeight() - 1; i >= 0; i--)
 		{
 			for (int j = 0; j < doc[i].size(); j++)
 			{
-				doc[count][j] = copy[i][j];
-				new_x++;
+				doc[counter][j] = vacant[i][j];
+				x++;
 			}
-			count++;
-			new_y++;
-			new_x = 0;
+			counter++;
+			y++;
+			x = 0;
 		}
 	}
 };
