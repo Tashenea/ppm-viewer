@@ -2,105 +2,101 @@
 # include "PpmDocument.hpp"
 # include "ImageEffect.hpp"
 
-class BlurringEffect : public ImageEffect
+class BlurEffect : public ImageEffect
 {
 public:
 	virtual void applyEffect(PpmDocument& doc)
 	{
-		vector<vector<Pixel>> temp(doc.getRawBytes);
+		vector<vector<Pixel>> temp = doc.getRgbData();
 
-		for (int i = 0; i < 1; i++)
+		for (int c = 0; c < 1; c++)
 		{
-			for (int j = 0; j < doc.getHeight(); j++)
+			for (int i = 0; i < doc.getHeight(); i++)
 			{
-				if (j == 0)
+				for (int j = 0; j < doc.getWidth(); j++)
 				{
-					int average;
-					Pixel& a = doc[i][j];
-					Pixel b = temp[i][j];
-					Pixel c = temp[i][j + 1];
-					average = ((a.red + b.red) / 2);
-					a.red = average;
-					average = ((a.blue + b.blue) / 2);
-					a.blue = average;
-					average = ((a.green + b.green) / 2);
-					a.green = average;
-
-
+					if (j == 0)
+					{
+						Pixel& p = doc[i][j];
+						Pixel q = temp[i][j];
+						Pixel r = temp[i][j + 1];
+						int average = (r.red + q.red) / 2;
+						p.red = average;
+						average = (r.green + q.green) / 2;
+						p.green = average;
+						average = (r.blue + q.blue) / 2;
+						p.blue = average;
+					}
+					else if (j == (doc.getWidth() - 1))
+					{
+						Pixel& p = doc[i][j];
+						Pixel q = temp[i][j];
+						Pixel r = temp[i][j - 1];
+						int average = (r.red + q.red) / 2;
+						p.red = average;
+						average = (r.green + q.green) / 2;
+						p.green = average;
+						average = (r.blue + q.blue) / 2;
+						p.blue = average;
+					}
+					else
+					{
+						Pixel& p = doc[i][j];
+						Pixel q = temp[i][j - 1];
+						Pixel r = temp[i][j];
+						Pixel s = temp[i][j + 1];
+						int average = (q.red + r.red + s.red) / 3;
+						p.red = average;
+						average = (q.green + r.green + s.green) / 3;
+						p.green = average;
+						average = (q.blue + r.blue + s.blue) / 3;
+						p.blue = average;
+					}
 				}
-				else if (j == (doc.getWidth() - 1))
-				{
-					int average;
-					Pixel& a = doc[i][j];
-					Pixel b = temp[i][j];
-					Pixel c = temp[i][j - 1];
-					average = ((c.red + b.red) / 2);
-					a.red = average;
-					average = ((c.blue + b.blue) / 2);
-					a.blue = average;
-					average = ((c.green + b.green) / 2);
-					a.green = average;
-				}
-				else
-				{
-					int average;
-					Pixel& a = doc[i][j];
-					Pixel b = temp[i][j - 1];
-					Pixel c = temp[i][j];
-					Pixel d = temp[i][j + 1];
-					average = ((b.red + c.red + d.red) / 3);
-					a.red = average;
-					average = ((b.blue + c.blue + d.blue) / 3);
-					a.blue = average;
-					average = ((b.green + c.green + d.green) / 3);
-					a.green = average;
-				}
-
 			}
-		}
-		for (int k = 0;k < doc.getWidth(); k++)
-		{
-			for (int U = 0; U < doc.getHeight(); U++)
+
+			temp = doc.getRgbData();
+			for (int j = 0; j < doc.getWidth(); j++)
 			{
-				if (U == 0)
+				for (int i = 0; i < doc.getHeight(); i++)
 				{
-					int average;
-					Pixel& a = doc[U][k];
-					Pixel b/* q*/ = temp[U][k];
-					Pixel e/* r*/ = temp[U + 1][k];
-					average = (b.red + e.red) / 2;
-					a.red = average;
-					average = (b.blue + e.blue) / 2;
-					a.blue= average;
-					average = (b.green + e.green) / 2;
-					a.green = average;
-				}
-				else if (U == (doc.getHeight() - 1))
-				{
-					int average;
-					Pixel& a = doc[U][k];
-					Pixel b = temp[U][k];
-					Pixel f = temp[U - 1][k];
-					average = (b.red + f.red) / 2;
-					a.red = average;
-					average = (b.green + f.green) / 2;
-					a.green = average;
-					average = (b.blue + f.blue) / 2;
-					a.blue = average;
-				}
-				else
-				{
-					int average;
-					Pixel& a = doc[U][k];
-					Pixel b = temp[U - 1][k];
-					Pixel c = temp[U][k];
-					Pixel g = temp[U + 1][k];
-					average = (b.red + c.red + g.red) / 3;
-					a.red = average;
-					average = (b.green + c.green + g.green) / 3;
-					a.green = average;
-					average = (b.blue + c.blue + g.blue) / 3;
-					a.blue = average;
+					if (i == 0)
+					{
+						Pixel& p = doc[i][j];
+						Pixel q = temp[i][j];
+						Pixel r = temp[i + 1][j];
+						int average = (q.red + r.red) / 2;
+						p.red = average;
+						average = (q.green + r.green) / 2;
+						p.green = average;
+						average = (q.blue + r.blue) / 2;
+						p.blue = average;
+					}
+					else if (i == (doc.getHeight() - 1))
+					{
+						Pixel& p = doc[i][j];
+						Pixel q = temp[i][j];
+						Pixel r = temp[i - 1][j];
+						int average = (q.red + r.red) / 2;
+						p.red = average;
+						average = (q.green + r.green) / 2;
+						p.green = average;
+						average = (q.blue + r.blue) / 2;
+						p.blue = average;
+					} 
+					else
+					{
+						Pixel& p = doc[i][j];
+						Pixel q = temp[i - 1][j];
+						Pixel r = temp[i][j];
+						Pixel s = temp[i + 1][j];
+						int average = (q.red + r.red + s.red) / 3;
+						p.red = average;
+						average = (q.green + r.green + s.green) / 3;
+						p.green = average;
+						average = (q.blue + r.blue + s.blue) / 3;
+						p.blue = average;
+					}
 				}
 			}
 		}

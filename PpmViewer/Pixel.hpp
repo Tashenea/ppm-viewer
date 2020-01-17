@@ -8,56 +8,26 @@ using namespace std;
 
 class Pixel
 {
-private:
-    int red;
-    int green;
-    int blue;
-
 public:
-    Pixel(int r = 0, int g = 0, int b = 0)
-    {
-        red = r;
-        green = g;
-        blue = b;
-    }
 
-    int getRed()
-    {
-        return red;
-    }
-
-    void setRed(int r)
-    {
-        red = r;
-    }
-
-    int getGreen()
-    {
-        return green;
-    }
-
-    void setGreen(int g)
-    {
-        green = g;
-    }
-
-    int getBlue()
-    {
-        return blue;
-    }
-
-    void setBlue(int b)
-    {
-        blue = b;
-    }
-
-    string toString()
-    {
-        ostringstream output{};
-        output << red << " " << green << " "
-            << blue;
-        return output.str();
-    }
+	//if you use this, you are not allowed to keep this as is!
+	//instead, I expect you to write proper getters and setters and
+	//make the actual variables private!
+	int red = -1;
+	int green = -1;
+	int blue = -1;
 };
 
-#endif // !PIXEL_H
+istream& operator>>(istream& stream, Pixel& pixel)
+{
+	stream >> pixel.red >> pixel.green >> pixel.blue;
+	return stream;
+}
+
+ostream& operator<<(ostream& stream, const Pixel& pixel)
+{
+	stream << pixel.red << " " << pixel.green << " " << pixel.blue;
+	return stream;
+}
+
+#endif
